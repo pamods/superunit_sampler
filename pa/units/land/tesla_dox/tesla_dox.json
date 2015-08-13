@@ -1,0 +1,191 @@
+{
+    "TEMP_texelinfo": 4.07719,
+    "attachable": {
+        "offsets": {
+            "head": [
+                0,
+                0,
+                17.5
+            ],
+            "root": [
+                0,
+                0,
+                0
+            ]
+        }
+    },
+    "audio": {
+        "loops": {
+            "move": {
+                "cue": "/SE/Movement/air/air_gunship_loop",
+                "flag": "vel_changed",
+                "should_start_func": "is_moving",
+                "should_stop_func": "is_not_moving"
+            }
+        },
+        "selection_response": {
+            "cue": "/SE/Selection/bot/assault"
+        }
+    },
+    "base_spec": "/pa/units/land/base_bot/base_bot.json",
+    "build_metal_cost": 30000,
+    "description": "The Tesla Dox is an electrified super unit that will decimate any unit from range with it's powerful lightning Tesla arcs. Vulnerable to Vanguards.",
+    "display_name": "Flying Armored Lightning Cannon",
+    "command_caps": [
+        "ORDER_Move",
+        "ORDER_Patrol",
+        "ORDER_Attack",
+        "ORDER_Assist",
+        "ORDER_Use",
+        "ORDER_FireSecondaryWeapon"
+    ],
+    "events": {
+        "build_complete": {
+            "audio_cue": "/SE/Build_Complete/bot",
+            "effect_scale": 5
+        },
+        "died": {
+            "audio_cue": "/SE/Death/Bot",
+            "sim_impact_effect": "/pa/effects/nuke/nuke_tac_ent.json",
+            "impact_decals": "/pa/effects/nuke/nuke_tac_scorch.json",
+            "effect_scale": 5
+        }
+    },
+    "guard_layer": "WL_AnySurface",
+    "guard_radius": 95,
+    "max_health": 10600,
+    "mesh_bounds": [
+        20,
+        10,
+        20
+    ],
+    "fx_offsets": [
+        {
+            "bone": "bone_tesla", 
+            "filename": "/pa/units/land/tesla_dox/electricity.pfx", 
+            "offset": [
+                0, 
+                0, 
+                3
+            ], 
+			"orientation": [0, 0, 0.0],
+            "type": "idle"
+        },
+        {
+            "bone": "bone_tesla", 
+            "filename": "/pa/units/land/tesla_dox/muzzle_electricity.pfx", 
+            "offset": [
+                0, 
+                -2.5, 
+                2
+            ], 
+			"orientation": [0, 0, 0.0],
+            "type": "idle"
+        },
+        {
+            "bone": "bone_root", 
+            "filename": "/pa/units/land/tesla_dox/rocket_jets.pfx", 
+            "offset": [
+                -3, 
+                0, 
+                1
+            ], 
+			"orientation": [0, 90, 0.0],
+            "type": "idle"
+        },
+        {
+            "bone": "bone_root", 
+            "filename": "/pa/units/land/tesla_dox/rocket_jets.pfx", 
+            "offset": [
+                3, 
+                0, 
+                1
+            ], 
+			"orientation": [0, 90, 0.0],
+            "type": "idle"
+        },
+        {
+            "bone": "bone_root", 
+            "filename": "/pa/units/land/tesla_dox/rocket_jets.pfx", 
+            "offset": [
+                3, 
+                2, 
+                6
+            ], 
+            "type": "moving"
+        },
+        {
+            "bone": "bone_root", 
+            "filename": "/pa/units/land/tesla_dox/rocket_jets.pfx", 
+            "offset": [
+                -3, 
+                2, 
+                6
+            ], 
+            "type": "moving"
+        }
+	], 
+    "model": {
+        "animations": {
+            "aim_down": "/pa/units/land/assault_bot_t3/assault_bot_anim_aim_dwnX.papa",
+            "aim_up": "/pa/units/land/assault_bot_t3/assault_bot_anim_aim_upX.papa",
+            "death01": "/pa/units/land/assault_bot_t3/assault_bot_anim_death01X.papa"
+        },
+        "animtree": "/pa/anim/anim_trees/bipedal_mech_anim_tree.json",
+        "filename": "/pa/units/land/tesla_dox/tesla_dox.papa",
+        "walk_speed": 100
+    },
+    "death_weapon": {
+        "ground_ammo_spec": "/pa/ammo/nuke_pbaoe/nuke_pbaoe.json",
+        "air_ammo_spec": "/pa/ammo/nuke_pbaoe/nuke_pbaoe.json",
+        "splash_damages_allies": false,
+        "air_height_threshold": 100
+    },
+    "navigation": {
+        "acceleration": 200,
+        "brake": 200,
+        "move_speed": 13,
+        "turn_speed": 420,
+        "type": "amphibious"
+    },
+    "physics": {
+        "push_class": 110,
+        "radius": 15
+    },
+    "recon": {
+        "observer": {
+            "items": [
+                {
+                    "channel": "sight",
+                    "layer": "surface_and_air",
+                    "radius": 250,
+                    "shape": "capsule"
+                }
+            ]
+        }
+    },
+    "tools": [
+        {
+            "spec_id": "/pa/units/land/tesla_dox/tesla_squisher_tool_weapon.json",
+            "aim_bone": "bone_root",
+            "muzzle_bone": "bone_root",
+            "show_range": false
+        },
+        {
+            "aim_bone": "bone_turret",
+            "muzzle_bone": "socket_tesla",
+            "spec_id": "/pa/units/land/tesla_dox/tesla_gun.json"
+        }
+    ],
+    "transportable": {
+        "size": 1
+    },
+    "unit_types": [
+        "UNITTYPE_Bot",
+        "UNITTYPE_Mobile",
+        "UNITTYPE_Offense",
+        "UNITTYPE_Land",
+        "UNITTYPE_Advanced",
+        "UNITTYPE_CombatFabAdvBuild"
+    ]
+}

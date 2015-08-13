@@ -9,17 +9,26 @@ var units = [
   {
     name: 'orbital_battleship',
     unit: '/pa/units/orbital/orbital_battleship/orbital_battleship.json',
-    mod_path: '../../server_mods/com.elodea.battleship.minimod/',
+    server_mod_path: '../../server_mods/com.elodea.battleship.minimod/',
     unit_path: 'pa/units/orbital/orbital_battleship/*',
     build: ['orbital', 0],
   },
   /*{
     name: 'bot_bomb_adv',
     unit: '/pa/units/land/bot_bomb_adv/bot_bomb_adv.json',
-    mod_path: '../../server_mods/com.pa.burntcustard.bBoomBotWars/',
+    server_mod_path: '../../server_mods/com.pa.burntcustard.bBoomBotWars/',
     unit_path: 'pa/units/land/bot_bomb_adv/*',
     build: ['bot', 0],
   },*/
+  {
+    name: 'tesla_dox',
+    unit: '/pa/units/land/tesla_dox/tesla_dox.json',
+    server_mod_path: '../../server_mods/com.pa.killerkiwijuice.doxlyf/',
+    unit_path: 'pa/units/land/tesla_dox/*',
+    client_mod_path: '../../mods/com.pa.doxlyf.ui/',
+    strategic_icon_path: 'ui/main/atlas/icon_atlas/img/strategic_icons/icon_si_tesla_dox.png',
+    build: ['ammo', 8],
+  },
 ]
 
 module.exports = function(grunt) {
@@ -101,6 +110,7 @@ module.exports = function(grunt) {
     }
   };
 
+
   units.forEach(function(unit) {
     if (!unit.strategic_icon_path) {
       unit.strategic_icon_path = 'ui/main/atlas/icon_atlas/img/strategic_icons/icon_si_' + unit.name + '.png'
@@ -109,7 +119,7 @@ module.exports = function(grunt) {
       unit.build_icon_path = 'ui/main/game/live_game/img/build_bar/units/' + unit.name + '.png'
     }
 
-    var modinfo = grunt.file.readJSON(Path.join(unit.mod_path, 'modinfo.json'))
+    var modinfo = grunt.file.readJSON(Path.join(unit.server_mod_path, 'modinfo.json'))
     if (!unit.author) unit.author = modinfo.author
     if (!unit.mod_name) unit.mod_name = modinfo.display_name
     if (!unit.forum) unit.forum = modinfo.forum
@@ -118,15 +128,22 @@ module.exports = function(grunt) {
       expand: true,
       src: [
         unit.unit_path,
-        unit.strategic_icon_path,
         unit.build_icon_path,
       ],
-      cwd: unit.mod_path,
+      cwd: unit.server_mod_path,
+      dest: './',
+    })
+    config.copy.units.files.push({
+      expand: true,
+      src: [
+        unit.strategic_icon_path,
+      ],
+      cwd: unit.client_mod_path || unit.server_mod_path,
       dest: './',
     })
   })
 
-  //console.log(JSON.stringify(config, null, 2))
+  console.log(JSON.stringify(config, null, 2))
 
   grunt.initConfig(config)
 

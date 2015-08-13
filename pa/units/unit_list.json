@@ -159,6 +159,7 @@
     "/pa/units/sea/sonar_adv/sonar_adv.json",
     "/pa/units/sea/torpedo_launcher/torpedo_launcher.json",
     "/pa/units/sea/torpedo_launcher_adv/torpedo_launcher_adv.json",
-    "/pa/units/orbital/orbital_battleship/orbital_battleship.json"
+    "/pa/units/orbital/orbital_battleship/orbital_battleship.json",
+    "/pa/units/land/tesla_dox/tesla_dox.json"
   ]
 }

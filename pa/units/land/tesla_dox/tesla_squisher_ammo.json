@@ -1,0 +1,23 @@
+{
+  "ammo_type":"AMMO_Projectile",
+  "flight_type":"Ballistic",
+  "flight_layer":"Air",
+  "spawn_layers":"WL_Air",
+  "physics":{
+    "type":"Projectile",
+    "radius":2,
+    "push_class":1,
+    "gravity_scalar":3,
+    "add_to_spatial_db":false,
+    "allow_underground":true
+  },
+  "damage":400,
+  "lifetime":4,
+  "initial_velocity":500,
+  "max_velocity":500,
+  "turn_rate":0,
+  "armor_damage_map":{
+    "AT_Structure":0.5,
+    "AT_Commander":0.1
+  }
+}
