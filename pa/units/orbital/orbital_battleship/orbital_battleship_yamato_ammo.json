@@ -1,0 +1,55 @@
+{
+  "ammo_type": "Projectile",
+  "charge_up_time": 3,
+  "audio_loop": "/SE/Celestial/Planet_Siren_last",
+  "burn_damage": 1,
+  "burn_radius": 400,
+  "damage": 15000,
+  "events": {
+  },
+  "collision_check": "ground",
+  "sim_impact_effect": "/pa/units/orbital/orbital_battleship/orbital_battleship_yamato_explosion_ent.json",
+  "damage_volume": {
+    "burnable_remove_radius": 300,
+    "delay": 0.2,
+    "initial_radius": 10.0,
+    "radius_accel": -40.0,
+    "radius_velocity": 180
+  },
+  "flight_type": "Direct",
+  "full_damage_splash_radius": 0,
+  "fx_trail": {
+    "filename": "/pa/units/orbital/orbital_battleship/orbital_battleship_yamato_proj_trail.pfx",
+    "offset": [
+      0.0,
+      0.8,
+      0.0
+    ]
+  },
+  "impact_decals": [
+    "/pa/units/orbital/orbital_battleship/orbital_battleship_yamato_scorch.json"
+  ],
+  "initial_velocity": 80.0,
+  "influence_radius": 3200,
+  "lifetime": 15,
+  "max_velocity": 80.0,
+  "physics": {
+    "add_to_spatial_db": false,
+    "allow_underground": true,
+    "ignore_gravity": false,
+    "push_class": 1,
+    "radius": 10
+  },
+  "spawn_layers": "WL_Orbital",
+  "splash_damage": 15000,
+  "splash_damages_allies": true,
+  "splash_radius": 325,
+    "recon": {
+    "observable": {
+      "always_visible": true,
+      "ignore_radar": true,
+      "layer": "surface_and_air",
+      "sphere_radius": 5
+    }
+  }
+}

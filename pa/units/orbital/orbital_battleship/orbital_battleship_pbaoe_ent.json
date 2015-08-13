@@ -1,0 +1,14 @@
+{
+  "recon": {
+    "observable": {
+      "always_visible": true,
+      "ignore_radar": true,
+      "layer": "surface_and_air",
+      "sphere_radius": 5
+    }
+  },
+  "spawn_response": {
+    "audio_cue": "/SE/Death/Sea_large",
+    "effect_spec": "/pa/units/orbital/orbital_battleship/orbital_battleship_explosion.pfx"
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "recon": {
+    "observable": {
+      "always_visible": true,
+      "ignore_radar": true,
+      "layer": "surface_and_air",
+      "sphere_radius": 5
+    }
+  },
+  "spawn_response": {
+    "audio_cue": "/SE/Celestial/Planet_Explode",
+    "effect_spec": "/pa/units/orbital/orbital_battleship/orbital_battleship_yamato_impact_explosion.pfx",
+	"camera_shake": {
+      "duration": 6.0,
+      "height": {
+        "keys": [
+          [
+            0,
+            20.0
+          ],
+          [
+            4.0,
+            10.0
+          ],
+          [
+            6.0,
+            0
+          ]
+        ],
+        "stepped": false
+      },
+      "interval": {
+        "keys": [
+          [
+            0,
+            0.06
+          ],
+          [
+            4.0,
+            0.03
+          ],
+          [
+            6.0,
+            0
+          ]
+        ],
+        "stepped": false
+      },
+      "max_falloff_dist": 3000.0,
+      "min_falloff_dist": 1000.0,
+      "width": {
+        "keys": [
+          [
+            0,
+            20.0
+          ],
+          [
+            4.0,
+            10.0
+          ],
+          [
+            6.0,
+            0
+          ]
+        ],
+        "stepped": false
+      }
+    }
+  }
+}

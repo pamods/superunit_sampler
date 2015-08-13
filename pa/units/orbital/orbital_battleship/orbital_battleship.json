@@ -1,0 +1,174 @@
+{
+  "TEMP_texelinfo": 47.2606,
+  "audio": {},
+  "base_spec": "/pa/units/orbital/base_orbital/base_orbital.json",
+  "build_metal_cost": 90000,
+  "command_caps": [
+    "ORDER_Move",
+    "ORDER_Patrol",
+    "ORDER_Attack",
+    "ORDER_Assist",
+    "ORDER_Use",
+    "ORDER_SpecialMove",
+    "ORDER_FireSecondaryWeapon"
+  ],
+  "description": "Ultimate Battlefield Solution - equipped with alt fire energy bomb, weak against avenger swarms",
+  "display_name": "Orbital Battleship",
+  "events": {
+    "build_complete": {
+      "audio_cue": "/SE/Build_Complete/sea",
+      "effect_scale": 1.6
+    },
+	"died": {
+	  "audio_cue": "/SE/Death/Sea_large",
+	  "effect_scale": 2.4,
+	  "effect_spec": "/pa/effects/specs/default_commander_explosion_air.pfx"
+	},
+    "fired0": {
+      "audio_cue": "/SE/Buildings/teleporter_disabled",
+      "effect_scale": 8,
+      "effect_spec": "/pa/units/orbital/orbital_battleship/orbital_battleship_laser_sphere.pfx socket_muzzle02 /pa/units/orbital/orbital_battleship/orbital_battleship_laser_sphere.pfx socket_muzzle03 /pa/units/orbital/orbital_battleship/orbital_battleship_laser_sphere.pfx socket_muzzle01"
+    },
+    "fired1": {
+      "audio_cue": "/SE/Buildings/teleporter_disabled",
+      "effect_scale": 8,
+      "effect_spec": "/pa/units/orbital/orbital_battleship/orbital_battleship_laser_sphere.pfx socket_muzzle05 /pa/units/orbital/orbital_battleship/orbital_battleship_laser_sphere.pfx socket_muzzle06 /pa/units/orbital/orbital_battleship/orbital_battleship_laser_sphere.pfx socket_muzzle04"
+    },
+    "fired2": {
+      "audio_cue": "/SE/Buildings/teleporter_disabled",
+      "effect_scale": 8,
+      "effect_spec": "/pa/units/orbital/orbital_battleship/orbital_battleship_laser_sphere.pfx socket_muzzle08 /pa/units/orbital/orbital_battleship/orbital_battleship_laser_sphere.pfx socket_muzzle09 /pa/units/orbital/orbital_battleship/orbital_battleship_laser_sphere.pfx socket_muzzle07"
+    },
+    "fired3": {
+      "audio_cue": "/SE/Buildings/teleporter_disabled",
+      "effect_scale": 8,
+      "effect_spec": "/pa/units/orbital/orbital_battleship/orbital_battleship_laser_sphere.pfx socket_muzzle11 /pa/units/orbital/orbital_battleship/orbital_battleship_laser_sphere.pfx socket_muzzle12 /pa/units/orbital/orbital_battleship/orbital_battleship_laser_sphere.pfx socket_muzzle10"
+    },
+	"fired": {
+	"audio_cue": "/SE/Buildings/teleporter_enabled",
+	"effect_spec": "/pa/units/orbital/orbital_battleship/orbital_battleship_yamato_fire.pfx bone_pitch01"
+	}
+  },
+  "death_weapon": {
+    "ground_ammo_spec": "/pa/units/orbital/orbital_battleship/orbital_battleship_pbaoe.json"
+  },
+  "guard_layer": "WL_AnySurface",
+  "max_health": 60000,
+  "mesh_bounds": [
+    27.2,
+    128,
+    36.8
+  ],
+  "model": {
+    "animtree": "/pa/anim/anim_trees/battleship_anim_tree.json",
+    "arrows": 5,
+    "filename": "/pa/units/orbital/orbital_battleship/orbital_battleshipX.papa"
+  },
+  "charge_up_time": 3,
+  "navigation": {
+    "acceleration": 50,
+    "bank_factor": 0.05,
+    "brake": 50,
+    "hover_time": -1.0,
+    "move_speed": 10,
+    "turn_speed": 6,
+    "type": "orbital"
+  },
+  "physics": {
+    "push_class": 2,
+    "radius": 19.2,
+    "shape": "sphere"
+  },
+  "planetary_arrival_cooldown_time": 10.0,
+  "recon": {
+    "observable": {
+      "always_visible": true
+    },
+    "observer": {
+      "items": [
+        {
+          "channel": "sight",
+          "layer": "orbital",
+          "radius": 280,
+          "shape": "capsule"
+        }
+      ]
+    }
+  },
+  "spawn_layers": "WL_Orbital",
+  "idle_aim_delay": 15,
+  "tools": [
+    {
+	  "aim_bone": "bone_root",
+	  "fire_event": "fired4",
+	  "muzzle_bone": "bone_root",
+	  "primary_weapon": false,
+	  "spec_id": "/pa/units/orbital/orbital_battleship/orbital_battleship_short_laser_tool_weapon.json"
+	},
+    {
+      "aim_bone": "bone_pitch01",
+      "muzzle_bone": "socket_muzzle02",
+      "secondary_weapon": true,
+	  "fire_event": "fired",
+      "spec_id": "/pa/units/orbital/orbital_battleship/orbital_battleship_yamato_tool_weapon.json"
+    },
+    {
+      "aim_bone": "bone_pitch01",
+      "fire_event": "fired0",
+      "muzzle_bone": [
+        "socket_muzzle01",
+        "socket_muzzle02",
+        "socket_muzzle03"
+      ],
+      "primary_weapon": true,
+      "projectiles_per_fire": 3,
+      "record_index": 0,
+      "spec_id": "/pa/units/orbital/orbital_battleship/orbital_battleship_laser_tool_weapon.json"
+    },
+    {
+      "aim_bone": "bone_pitch02",
+      "fire_event": "fired1",
+      "muzzle_bone": [
+        "socket_muzzle04",
+        "socket_muzzle05",
+        "socket_muzzle06"
+      ],
+      "projectiles_per_fire": 3,
+      "record_index": 1,
+      "spec_id": "/pa/units/orbital/orbital_battleship/orbital_battleship_laser_tool_weapon.json"
+    },
+    {
+      "aim_bone": "bone_pitch03",
+      "fire_event": "fired2",
+      "muzzle_bone": [
+        "socket_muzzle07",
+        "socket_muzzle08",
+        "socket_muzzle09"
+      ],
+      "projectiles_per_fire": 3,
+      "record_index": 2,
+      "spec_id": "/pa/units/orbital/orbital_battleship/orbital_battleship_laser_tool_weapon.json"
+    },
+    {
+      "aim_bone": "bone_pitch04",
+      "fire_event": "fired3",
+      "muzzle_bone": [
+        "socket_muzzle10",
+        "socket_muzzle11",
+        "socket_muzzle12"
+      ],
+      "projectiles_per_fire": 3,
+      "record_index": 3,
+      "spec_id": "/pa/units/orbital/orbital_battleship/orbital_battleship_laser_tool_weapon.json"
+    }
+  ],
+  "unit_types": [
+    "UNITTYPE_Orbital",
+    "UNITTYPE_Mobile",
+    "UNITTYPE_Offense",
+    "UNITTYPE_Artillery",
+    "UNITTYPE_Advanced",
+    "UNITTYPE_FactoryBuild"
+  ],
+  "wreckage_health_frac": 1
+}

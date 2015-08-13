@@ -1,0 +1,19 @@
+{
+  "ammo_type": "PBAOE",
+  "armor_damage_map": {},
+  "burn_damage": 200,
+  "burn_radius": 100,
+  "damage": 200,
+  "damage_volume": {
+    "burnable_remove_radius": 100.0,
+    "delay": 1.5,
+    "initial_radius": 5,
+    "radius_accel": -40.0,
+    "radius_velocity": 180.0
+  },
+  "full_damage_splash_radius": 20,
+  "impact_decals": [],
+  "sim_fire_effect": "/pa/units/orbital/orbital_battleship/orbital_battleship_pbaoe_ent.json",
+  "splash_damages_allies": true,
+  "splash_radius": 100
+}
