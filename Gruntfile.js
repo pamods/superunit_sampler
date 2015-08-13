@@ -34,6 +34,9 @@ module.exports = function(grunt) {
           },
         ],
       },
+      units: {
+        files: [],
+      },
       build: {
         files: [
           {
@@ -104,20 +107,16 @@ module.exports = function(grunt) {
     if (!unit.mod_name) unit.mod_name = modinfo.display_name
     if (!unit.forum) unit.forum = modinfo.forum
 
-    config.copy[unit.name] = {
-      files: [
-        {
-          expand: true,
-          src: [
-            unit.unit_path,
-            unit.strategic_icon_path,
-            unit.build_icon_path,
-          ],
-          cwd: unit.mod_path,
-          dest: './',
-        },
+    config.copy.units.files.push({
+      expand: true,
+      src: [
+        unit.unit_path,
+        unit.strategic_icon_path,
+        unit.build_icon_path,
       ],
-    }
+      cwd: unit.mod_path,
+      dest: './',
+    })
   })
 
   //console.log(JSON.stringify(config, null, 2))
@@ -139,7 +138,7 @@ module.exports = function(grunt) {
   })
 
   // Default task(s).
-  grunt.registerTask('default', ['proc', 'copy:mod']);
+  grunt.registerTask('default', ['copy:units', 'copy:build', 'copy:license', 'proc', 'copy:mod']);
 
 };
 
