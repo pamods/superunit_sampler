@@ -12,7 +12,14 @@ var units = [
     mod_path: '../../server_mods/com.elodea.battleship.minimod/',
     unit_path: 'pa/units/orbital/orbital_battleship/*',
     build: ['orbital', 0],
-  }
+  },
+  /*{
+    name: 'bot_bomb_adv',
+    unit: '/pa/units/land/bot_bomb_adv/bot_bomb_adv.json',
+    mod_path: '../../server_mods/com.pa.burntcustard.bBoomBotWars/',
+    unit_path: 'pa/units/land/bot_bomb_adv/*',
+    build: ['bot', 0],
+  },*/
 ]
 
 module.exports = function(grunt) {
