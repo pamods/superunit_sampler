@@ -1,0 +1,16 @@
+{
+  "ammo_id": "/pa/units/air/mb3/mb3_cannon_ammo.json",
+  "base_spec": "/pa/tools/base_artillery_turret_unit/base_artillery_turret_unit.json",
+  "idle_aim_delay": 3,
+  "max_range": 160,
+  "pitch_range": 180,
+  "rate_of_fire": 0.35,
+  "target_priorities": [
+    "AirDefense - Air",
+    "Mobile - Air - Naval",
+    "Mobile & Naval",
+    "Structure - Wall",
+    "Wall"
+  ],
+  "yaw_range": 180
+}

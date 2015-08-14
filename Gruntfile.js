@@ -29,6 +29,14 @@ var units = [
     strategic_icon_path: 'ui/main/atlas/icon_atlas/img/strategic_icons/icon_si_tesla_dox.png',
     build: ['ammo', 8],
   },
+  {
+    name: 'mb3',
+    unit: '/pa/units/air/mb3/mb3.json',
+    server_mod_path: '../../server_mods/com.stuart98.galacticannihilation/',
+    unit_path: 'pa/units/air/mb3/*',
+    strategic_icon_path: 'ui/main/atlas/icon_atlas/img/strategic_icons/icon_si_uber.png',
+    build: ['factory', 4],
+  },
 ]
 
 module.exports = function(grunt) {
@@ -50,7 +58,7 @@ module.exports = function(grunt) {
           },
         ],
       },
-      units: {
+      images: {
         files: [],
       },
       build: {
@@ -124,16 +132,15 @@ module.exports = function(grunt) {
     if (!unit.mod_name) unit.mod_name = modinfo.display_name
     if (!unit.forum) unit.forum = modinfo.forum
 
-    config.copy.units.files.push({
+    config.copy.images.files.push({
       expand: true,
       src: [
-        unit.unit_path,
         unit.build_icon_path,
       ],
       cwd: unit.server_mod_path,
       dest: './',
     })
-    config.copy.units.files.push({
+    config.copy.images.files.push({
       expand: true,
       src: [
         unit.strategic_icon_path,
@@ -143,7 +150,44 @@ module.exports = function(grunt) {
     })
   })
 
-  console.log(JSON.stringify(config, null, 2))
+  var rePath = /"\/(pa\/[^"]+)"/g
+  var findPaths = function(content) {
+    var match
+    var results = []
+    while (match = rePath.exec(content)) {
+      results.push(match[1])
+    }
+    return results
+  }
+
+  var explodeUnitFiles = function(unit) {
+    var todo = grunt.file.expand({cwd: unit.server_mod_path}, unit.unit_path)
+    var done = []
+    var path
+    while (path = todo.shift()) {
+      var src = Path.join(unit.server_mod_path, path)
+      if (path.match('\.json')) {
+        var content = grunt.file.read(src)
+        grunt.file.write(path, content)
+
+        var ref = findPaths(content)
+        ref.forEach(function(p) {
+          if (p != path
+           && todo.indexOf(p) == -1
+           && done.indexOf(p) == -1
+           && grunt.file.exists(Path.join(unit.server_mod_path, p))) {
+            todo.push(p)
+          }
+        })
+      } else {
+        grunt.file.copy(Path.join(unit.server_mod_path, path), path)
+      }
+      done.push(path)
+    }
+    var done = []
+  }
+
+  //console.log(JSON.stringify(config, null, 2))
 
   grunt.initConfig(config)
 
@@ -161,8 +205,12 @@ module.exports = function(grunt) {
     }
   })
 
+  grunt.registerTask('copyunits', function() {
+    units.forEach(explodeUnitFiles)
+  })
+
   // Default task(s).
-  grunt.registerTask('default', ['copy:units', 'copy:build', 'copy:license', 'proc', 'copy:mod']);
+  grunt.registerTask('default', ['copyunits', 'copy:images', 'copy:build', 'copy:license', 'proc', 'copy:mod']);
 
 };
 

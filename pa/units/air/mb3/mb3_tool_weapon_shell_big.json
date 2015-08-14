@@ -1,0 +1,21 @@
+{
+  "ammo_id": "/pa/units/air/mb3/mb3_ammo_frontal.json",
+  "base_spec": "/pa/tools/base_artillery_turret_unit/base_artillery_turret_unit.json",
+  "idle_aim_delay": 3,
+  "max_range": 160,
+  "pitch_range": 180,
+  "rate_of_fire": 0.25,
+  "target_layers": [
+    "WL_LandHorizontal",
+    "WL_Underwater",
+    "WL_Seafloor",
+    "WL_WaterSurface"
+  ],
+  "target_priorities": [
+    "AirDefense - Air",
+    "Mobile - Air",
+    "Structure - Wall",
+    "Wall"
+  ],
+  "yaw_range": 30
+}

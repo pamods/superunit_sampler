@@ -1,0 +1,15 @@
+{
+  "recon": {
+    "observable": {
+      "always_visible": true, 
+      "ignore_radar": true, 
+      "layer": "surface_and_air", 
+      "sphere_radius": 5
+    }
+  }, 
+  "spawn_response": {
+    "audio_cue": "/SE/Impacts/missile_seeking", 
+    "effect_scale": 2, 
+    "effect_spec": "/pa/effects/nuke/nuke_tac_explosion.pfx"
+  }
+}
