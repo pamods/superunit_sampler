@@ -31,6 +31,7 @@
     "UNITTYPE_SelfDestruct",
     "UNITTYPE_Custom1"
   ],
+  "area_build_type":"Sphere",
   "transportable":{
     "size":1
   },

@@ -2,7 +2,7 @@
   "base_spec":"/pa/tools/engineer_build_arm_adv/engineer_build_arm_adv.json",
   "yaw_rate":360,
   "pitch_rate":360,
-  "max_range":8,
+  "max_range":10,
   "auto_repair":false,
   "construction_demand":{
     "energy":800,
