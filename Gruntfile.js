@@ -26,7 +26,6 @@ var units = [
     server_mod_path: '../../server_mods/com.pa.killerkiwijuice.doxlyf/',
     unit_path: 'pa/units/land/tesla_dox/*',
     client_mod_path: '../../mods/com.pa.doxlyf.ui/',
-    strategic_icon_path: 'ui/main/atlas/icon_atlas/img/strategic_icons/icon_si_tesla_dox.png',
     build: ['ammo', 8],
   },
   {
@@ -36,6 +35,26 @@ var units = [
     unit_path: 'pa/units/air/mb3/*',
     strategic_icon_path: 'ui/main/atlas/icon_atlas/img/strategic_icons/icon_si_uber.png',
     build: ['factory', 4],
+  },
+  {
+    name: 'Xmb1',
+    unit: '/pa/units/land/Xmb1/Xmb1.json',
+    server_mod_path: '../../server_mods/com.zx.pa.modxs/',
+    unit_path: 'pa/units/land/Xmb1/*',
+    client_mod_path: '../../mods/com.zx.pa.modxc/',
+    build: ['ammo', 7],
+    copy: {
+      modx_textures: {
+        files: [{
+          expand: true,
+          src: [
+            'pa/units/land/Xmb1/*',
+          ],
+          cwd: '../../mods/com.zx.pa.modxc.part2/',
+          dest: './',
+        }]
+      },
+    }
   },
 ]
 
@@ -157,6 +176,12 @@ module.exports = function(grunt) {
       cwd: unit.client_mod_path || unit.server_mod_path,
       dest: './',
     })
+
+    if (unit.copy) {
+      Object.keys(unit.copy).forEach(function(key) {
+        config.copy[key] = unit.copy[key]
+      })
+    }
   })
 
   var rePath = /"\/(pa\/[^"]+)"/g
@@ -196,7 +221,7 @@ module.exports = function(grunt) {
     var done = []
   }
 
-  //console.log(JSON.stringify(config, null, 2))
+  console.log(JSON.stringify(config, null, 2))
 
   grunt.initConfig(config)
 
@@ -219,7 +244,7 @@ module.exports = function(grunt) {
   })
 
   // Default task(s).
-  grunt.registerTask('default', ['copyunits', 'copy:images', 'copy:build', 'copy:license', 'proc', 'copy:mod']);
+  grunt.registerTask('default', ['copyunits', 'copy:modx_textures', 'copy:images', 'copy:build', 'copy:license', 'proc', 'copy:mod']);
 
 };
 

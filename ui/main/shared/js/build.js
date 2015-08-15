@@ -104,7 +104,8 @@ function BuildHotkeyModel() {
             "/pa/units/orbital/orbital_battleship/orbital_battleship.json": ["orbital",0],
             "/pa/units/land/bot_bomb_adv/bot_bomb_adv.json": ["ammo",9],
             "/pa/units/land/tesla_dox/tesla_dox.json": ["ammo",8],
-            "/pa/units/air/mb3/mb3.json": ["factory",4]        }
+            "/pa/units/air/mb3/mb3.json": ["factory",4],
+            "/pa/units/land/Xmb1/Xmb1.json": ["ammo",7]        }
     );
 };
 

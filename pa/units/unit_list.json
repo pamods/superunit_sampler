@@ -162,6 +162,7 @@
     "/pa/units/orbital/orbital_battleship/orbital_battleship.json",
     "/pa/units/land/bot_bomb_adv/bot_bomb_adv.json",
     "/pa/units/land/tesla_dox/tesla_dox.json",
-    "/pa/units/air/mb3/mb3.json"
+    "/pa/units/air/mb3/mb3.json",
+    "/pa/units/land/Xmb1/Xmb1.json"
   ]
 }
