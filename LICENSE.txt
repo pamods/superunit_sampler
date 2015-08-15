@@ -2,6 +2,10 @@ orbital_battleship from Battleship by Elodea
 https://forums.uberent.com/threads/rel-battleship.68538/
 Used with Permission
 
+bot_bomb_adv from Boom Bot Wars by burntcustard
+https://forums.uberent.com/threads/rel-boom-bot-wars.61879/
+Used with Permission
+
 tesla_dox from Dox4Lyf Mod by KillerKiwiJuice
 https://forums.uberent.com/threads/rel-dox4lyf-mod.65833/
 Used with Permission

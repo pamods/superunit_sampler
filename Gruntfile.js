@@ -13,13 +13,13 @@ var units = [
     unit_path: 'pa/units/orbital/orbital_battleship/*',
     build: ['orbital', 0],
   },
-  /*{
+  {
     name: 'bot_bomb_adv',
     unit: '/pa/units/land/bot_bomb_adv/bot_bomb_adv.json',
-    server_mod_path: '../../server_mods/com.pa.burntcustard.bBoomBotWars/',
+    server_mod_path: 'template/bBoomBotWars/',
     unit_path: 'pa/units/land/bot_bomb_adv/*',
-    build: ['bot', 0],
-  },*/
+    build: ['ammo', 9],
+  },
   {
     name: 'tesla_dox',
     unit: '/pa/units/land/tesla_dox/tesla_dox.json',
@@ -114,7 +114,16 @@ module.exports = function(grunt) {
             spec.units.push(unit.unit)
           })
         }
-      }
+      },
+      bot_bomb: {
+        targets: [
+          'pa/units/land/bot_bomb/bot_bomb.json'
+        ],
+        process: function(spec) {
+          spec.area_build_type = "Sphere"
+          spec.unit_types.push("UNITTYPE_Custom1")
+        }
+      },
     }
   };
 
