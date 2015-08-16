@@ -34,7 +34,7 @@ var units = [
     unit: '/pa/units/air/mb3/mb3.json',
     server_mod_path: '../../server_mods/com.stuart98.galacticannihilation/',
     unit_path: 'pa/units/air/mb3/*',
-    strategic_icon_path: 'ui/main/atlas/icon_atlas/img/strategic_icons/icon_si_uber.png',
+    si_name: 'uber',
     build: ['factory', 4],
   },
   {
@@ -95,7 +95,8 @@ module.exports = function(grunt) {
               'LICENSE.txt',
               'README.md',
               'CHANGELOG.md',
-              'ui/main/atlas/**'],
+              'ui/main/atlas/**',
+              'ui/mods/**'],
             dest: clientModPath,
           },
         ],
@@ -110,6 +111,7 @@ module.exports = function(grunt) {
         options: {
           process: function(content, srcpath) {
             var info = JSON.parse(content)
+            delete info.scenes
             info.author = authorNames().join(', ')
             info.date = require('dateformat')(new Date(), 'yyyy/mm/dd')
             console.log(info.display_name, info.identifier, info.version, info.date)
@@ -127,9 +129,12 @@ module.exports = function(grunt) {
         options: {
           process: function(content, srcpath) {
             var info = JSON.parse(content)
+            info.context = 'client'
+            info.display_name = "Superunit Sampler Icons"
             info.author = authorNames().join(', ')
             info.date = require('dateformat')(new Date(), 'yyyy/mm/dd')
             info.identifier = info.identifier.replace('server', 'client')
+            info.category = ['strategic-icons', 'client-side-complementary'],
             console.log(info.display_name, info.identifier, info.version, info.date)
             return JSON.stringify(info, null, 2)
           }
@@ -206,8 +211,11 @@ module.exports = function(grunt) {
 
 
   units.forEach(function(unit) {
+    if (!unit.si_name) {
+      unit.si_name = unit.name
+    }
     if (!unit.strategic_icon_path) {
-      unit.strategic_icon_path = 'ui/main/atlas/icon_atlas/img/strategic_icons/icon_si_' + unit.name + '.png'
+      unit.strategic_icon_path = 'ui/main/atlas/icon_atlas/img/strategic_icons/icon_si_' + unit.si_name + '.png'
     }
     if (!unit.build_icon_path) {
       unit.build_icon_path = 'ui/main/game/live_game/img/build_bar/units/' + unit.name + '.png'
@@ -301,7 +309,14 @@ module.exports = function(grunt) {
     units.forEach(explodeUnitFiles)
   })
 
-  grunt.registerTask('local', ['copyunits', 'copy:modx_textures', 'copy:images', 'copy:build', 'copy:license', 'proc'])
+  grunt.registerTask('atlas', function() {
+    var ids = units.map(function(unit) {return unit.si_name})
+    grunt.file.write('ui/mods/superunit_sampler/icon_atlas.js',
+      'model.strategicIcons(model.strategicIcons().concat(' + JSON.stringify(ids) + '))'
+    )
+  })
+
+  grunt.registerTask('local', ['copyunits', 'copy:modx_textures', 'copy:images', 'copy:build', 'copy:license', 'atlas', 'proc'])
   grunt.registerTask('mod', ['copy:mod', 'copy:server_modinfo', 'copy:client_modinfo']);
 
   // Default task(s).

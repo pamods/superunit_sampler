@@ -1,0 +1,1 @@
+model.strategicIcons(model.strategicIcons().concat(["orbital_battleship","bot_bomb_adv","tesla_dox","uber","Xmb1"]))

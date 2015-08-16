@@ -7,7 +7,12 @@
   "description": "Add a dash of bold flavor to your vaniallla PA games.",
   "display_name": "Superunit Sampler",
   "forum": null,
-  "identifier": "com.wondible.pa.superunit_sampler",
+  "identifier": "com.wondible.pa.superunit_sampler.server",
+  "scenes": {
+    "icon_atlas": [
+      "coui:/ui/mods/superunit_sampler/icon_atlas.js"
+    ]
+  },
   "signature": "not yet implemented",
   "version": "0.1.0"
 }
