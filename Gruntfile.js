@@ -1,7 +1,8 @@
 var spec = require('./lib/spec')
 var Path = require('path')
 
-var modPath = '../../server_mods/com.wondible.pa.superunit_sampler/'
+var serverModPath = '../../server_mods/com.wondible.pa.superunit_sampler.server/'
+var clientModPath = '../../mods/com.wondible.pa.superunit_sampler.client/'
 var stream = 'stable'
 var media = require('./lib/path').media(stream)
 
@@ -58,6 +59,19 @@ var units = [
   },
 ]
 
+var authorNames = function() {
+  var names = ['wondible']
+  units.forEach(function(unit) {
+    var authors = unit.author.split(/, */)
+    authors.forEach(function(name) {
+      if (names.indexOf(name) == -1) {
+        names.push(name)
+      }
+    })
+  })
+  return names
+}
+
 module.exports = function(grunt) {
   // Project configuration.
   console.log(media)
@@ -73,9 +87,53 @@ module.exports = function(grunt) {
               'CHANGELOG.md',
               'ui/**',
               'pa/**'],
-            dest: modPath,
+            dest: serverModPath,
+          },
+          {
+            src: [
+              'modinfo.json',
+              'LICENSE.txt',
+              'README.md',
+              'CHANGELOG.md',
+              'ui/main/atlas/**'],
+            dest: clientModPath,
           },
         ],
+      }, 
+      server_modinfo: {
+        files: [
+          {
+            src: ['modinfo.json'],
+            dest: serverModPath,
+          },
+        ],
+        options: {
+          process: function(content, srcpath) {
+            var info = JSON.parse(content)
+            info.author = authorNames().join(', ')
+            info.date = require('dateformat')(new Date(), 'yyyy/mm/dd')
+            console.log(info.display_name, info.identifier, info.version, info.date)
+            return JSON.stringify(info, null, 2)
+          }
+        }
+      },
+      client_modinfo: {
+        files: [
+          {
+            src: ['modinfo.json'],
+            dest: clientModPath,
+          },
+        ],
+        options: {
+          process: function(content, srcpath) {
+            var info = JSON.parse(content)
+            info.author = authorNames().join(', ')
+            info.date = require('dateformat')(new Date(), 'yyyy/mm/dd')
+            info.identifier = info.identifier.replace('server', 'client')
+            console.log(info.display_name, info.identifier, info.version, info.date)
+            return JSON.stringify(info, null, 2)
+          }
+        }
       },
       images: {
         files: [],
@@ -122,7 +180,7 @@ module.exports = function(grunt) {
         },
       },
     },
-    clean: ['pa', modPath],
+    clean: ['pa', 'ui', serverModPath, clientModPath],
     proc: {
       unit_list: {
         targets: [
@@ -221,7 +279,7 @@ module.exports = function(grunt) {
     var done = []
   }
 
-  console.log(JSON.stringify(config, null, 2))
+  //console.log(JSON.stringify(config, null, 2))
 
   grunt.initConfig(config)
 
@@ -243,8 +301,11 @@ module.exports = function(grunt) {
     units.forEach(explodeUnitFiles)
   })
 
+  grunt.registerTask('local', ['copyunits', 'copy:modx_textures', 'copy:images', 'copy:build', 'copy:license', 'proc'])
+  grunt.registerTask('mod', ['copy:mod', 'copy:server_modinfo', 'copy:client_modinfo']);
+
   // Default task(s).
-  grunt.registerTask('default', ['copyunits', 'copy:modx_textures', 'copy:images', 'copy:build', 'copy:license', 'proc', 'copy:mod']);
+  grunt.registerTask('default', ['local', 'mod']);
 
 };
 
