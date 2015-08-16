@@ -13,6 +13,7 @@ var units = [
     server_mod_path: '../../server_mods/com.elodea.battleship.minimod/',
     unit_path: 'pa/units/orbital/orbital_battleship/*',
     build: ['orbital', 0],
+    description: 'Experimental T3 orbital battleship which can shoot energy bombs at people using alt fire.  Built by orbital factory.',
   },
   {
     name: 'bot_bomb_adv',
@@ -20,6 +21,7 @@ var units = [
     server_mod_path: 'template/bBoomBotWars/',
     unit_path: 'pa/units/land/bot_bomb_adv/*',
     build: ['ammo', 9],
+    description: 'Giant Boom Bot that can build regular boom bots, and explodes like a nuke with an explicit attack command.  Built by the advanced vehicle factory.',
   },
   {
     name: 'tesla_dox',
@@ -28,6 +30,7 @@ var units = [
     unit_path: 'pa/units/land/tesla_dox/*',
     client_mod_path: '../../mods/com.pa.doxlyf.ui/',
     build: ['ammo', 8],
+    description: 'Flying bot that arcs electricty at enemies. Built by adv. combat fabber.',
   },
   {
     name: 'mb3',
@@ -36,6 +39,7 @@ var units = [
     unit_path: 'pa/units/air/mb3/*',
     si_name: 'uber',
     build: ['factory', 4],
+    description: 'Type Uber Gunship. The Perdition has a heavy railgun battery along with four heavy cannons and four light RPG launchers, allowing it to devastate armies and individual targets alike. It has sub-par anti-air, however, and thus requires an escort to operate properly. Built by advanced fabricators.',
   },
   {
     name: 'Xmb1',
@@ -44,6 +48,7 @@ var units = [
     unit_path: 'pa/units/land/Xmb1/*',
     client_mod_path: '../../mods/com.zx.pa.modxc/',
     build: ['ammo', 7],
+    description: 'Quake tank has a high speed laser and area effect plasma cannon.  Built by any fabbricator.',
     copy: {
       modx_textures: {
         files: [{
@@ -314,6 +319,20 @@ module.exports = function(grunt) {
     grunt.file.write('ui/mods/superunit_sampler/icon_atlas.js',
       'model.strategicIcons(model.strategicIcons().concat(' + JSON.stringify(ids) + '))'
     )
+  })
+
+  grunt.registerTask('readme', function() {
+    var content = grunt.file.read('README.md')
+    var desc = units.map(function(unit) {
+      return unit.name +
+        ' from [' + unit.mod_name + '](' + unit.forum + ')' +
+        ' by ' + unit.author +
+        '\n' + unit.description
+    }).join('\n\n')
+    content = content.replace(
+      /## Units\n\n.*----/g,
+      '## Units\n\n' + desc + '\n\n----')
+    grunt.file.write('README.md', content)
   })
 
   grunt.registerTask('local', ['copyunits', 'copy:modx_textures', 'copy:images', 'copy:build', 'copy:license', 'atlas', 'proc'])
